@@ -1,0 +1,59 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Build directories
+bin/
+out/
+target/
+
+# IDE files
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Misc
+*.swp
+*.swo
+
+# Test output
+/test-output/
+
+
+# Ignore any temporary files
+*.tmp
+*.bak
+
+# Maven
+.mvn/
+
+# Gradle
+.gradle/
+build/
+
+# Environment
+.env
+
+# Ignore coverage reports
+coverage/
+
+# Ignore Jupyter notebooks
+*.ipynb
+
+# Ignore Python cache (if any)
+__pycache__/
+*.pyc
+
+# Ignore node_modules (if any JS tooling)
+node_modules/
