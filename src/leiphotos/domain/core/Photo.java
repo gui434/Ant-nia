@@ -8,28 +8,33 @@ import leiphotos.domain.facade.IPhoto;
 
 
 class Photo implements IPhoto{
+    private PhotoMetadata photoMetadata;
+    private LocalDateTime addedDate;
+    private String title;
+    private File file;
 
-        Photo(String title, LocalDateTime dateAddedToLib, PhotoMetadata metadata, File
-    pathToFile){
-
+    Photo(String title, LocalDateTime dateAddedToLib, PhotoMetadata metadata, File pathToFile){
+        this.title = title;
+        this.addedDate = dateAddedToLib;
+        this.file = pathToFile;
+        this.photoMetadata = metadata;
     }
 
     @Override
     public String title() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'title'");
+        return this.title;
     }
 
     @Override
     public LocalDateTime capturedDate() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'capturedDate'");
+        throw new UnsupportedOperationException("Unimplemented method 'CapturedDate'");
+
     }
 
     @Override
     public LocalDateTime addedDate() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addedDate'");
+        return this.addedDate;
+ 
     }
 
     @Override
