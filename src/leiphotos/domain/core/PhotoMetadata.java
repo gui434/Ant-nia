@@ -22,7 +22,7 @@ public class PhotoMetadata implements RegExpMatchable{
                 this.date = date;
 
                 if(gpsLocation != null && gpsLocation.length <= 2){
-                    this.location = new GPSLocation();
+                    this.location = new GPSLocation(gpsLocation[0],gpsLocation[1]);
                 }
     }
 
