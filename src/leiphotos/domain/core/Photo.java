@@ -28,7 +28,7 @@ class Photo implements IPhoto,RegExpMatchable {
 
     @Override
     public LocalDateTime capturedDate() {
-        throw new UnsupportedOperationException("Unimplemented method 'CapturedDate'");
+        return this.photoMetadata.date();
     }
 
     @Override
