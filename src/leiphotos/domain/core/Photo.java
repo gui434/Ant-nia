@@ -5,9 +5,10 @@ import java.util.Optional;
 
 import leiphotos.domain.facade.GPSCoordinates;
 import leiphotos.domain.facade.IPhoto;
+import leiphotos.utils.RegExpMatchable;
 
 
-class Photo implements IPhoto{
+class Photo implements IPhoto,RegExpMatchable {
     private PhotoMetadata photoMetadata;
     private LocalDateTime addedDate;
     private String title;
@@ -28,7 +29,6 @@ class Photo implements IPhoto{
     @Override
     public LocalDateTime capturedDate() {
         throw new UnsupportedOperationException("Unimplemented method 'CapturedDate'");
-
     }
 
     @Override
@@ -57,20 +57,17 @@ class Photo implements IPhoto{
 
     @Override
     public long size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return this.file.length();
     }
 
     @Override
     public File file() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'file'");
+        return this.file;
     }
 
     @Override
     public boolean matches(String regexp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'matches'");
+        return title.matches(regexp) || photoMetadata.matches(regexp);
     }
 
     
