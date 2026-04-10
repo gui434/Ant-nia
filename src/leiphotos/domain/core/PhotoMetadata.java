@@ -26,8 +26,10 @@ public class PhotoMetadata implements RegExpMatchable{
 
     @Override
     public boolean matches(String regexp) {
-        return this.manufacturer.matches(regexp) || this.camera.matches(regexp) || this.manufacturer.matches(regexp);
+        return this.manufacturer.matches(regexp) || this.camera.matches(regexp) || this.aperture.matches(regexp);
     }
     
-
+    public LocalDateTime date() {
+        return this.date;
+    }
 }
