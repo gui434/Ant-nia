@@ -1,6 +1,7 @@
 package leiphotos.domain.core;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import leiphotos.domain.facade.IPhoto;
 import leiphotos.utils.AbsSubject;
@@ -9,28 +10,25 @@ import leiphotos.domain.core.events.PhotoLibraryEvent;
 import leiphotos.domain.core.events.PhotoRemovedLibraryEvent;
 
 public class MainLibrary extends AbsSubject<PhotoLibraryEvent> implements Library {
-    private int numberOfPhotos;
     private Collection<IPhoto> photos;
 
     public MainLibrary() {
-        this.numberOfPhotos = 0;
         this.photos = new java.util.ArrayList<>();
     }
 
     @Override
     public int getNumberOfPhotos() {
-        return this.numberOfPhotos;
+        return this.photos.size();
     }
 
     @Override
     public boolean addPhoto(IPhoto photo) {
-        if (photo == null ||this.photos.contains(photo)) {
+        if (photo == null || this.photos.contains(photo)) {
             return false;
         }
 
         boolean success = this.photos.add(photo);
         if (success) {
-            this.numberOfPhotos++;
             this.emitEvent(new PhotoAddedLibraryEvent(photo, this));
         }
         return success;
@@ -44,7 +42,6 @@ public class MainLibrary extends AbsSubject<PhotoLibraryEvent> implements Librar
 
         boolean success = this.photos.remove(photo);
         if (success) {
-            this.numberOfPhotos--;
             this.emitEvent(new PhotoRemovedLibraryEvent(photo, this));
         }
         return success;
@@ -52,7 +49,7 @@ public class MainLibrary extends AbsSubject<PhotoLibraryEvent> implements Librar
 
     @Override
     public Collection<IPhoto> getPhotos() {
-        return photos;
+        return Collections.unmodifiableCollection(this.photos);
     }
 
     @Override

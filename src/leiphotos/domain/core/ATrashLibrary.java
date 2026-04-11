@@ -1,27 +1,33 @@
 package leiphotos.domain.core;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import leiphotos.domain.facade.IPhoto;
 
-abstract public class ATrashLibrary implements TrashLibrary {
+public abstract class ATrashLibrary implements TrashLibrary {
 
-    // protected abstract void clean() {
+    protected Collection<IPhoto> photos = new ArrayList<>();
 
-    // }
+     protected abstract void clean();
 
-    // protected abstract boolean cleaningTime(){
+     protected abstract boolean cleaningTime();
 
-    // }
+    @Override
+    public Collection<IPhoto> getPhotos() {
+        while (cleaningTime()) {
+            clean();
+        }
+        return this.photos;
+    }
 
-    // @Override
-    // public void addPhoto(IPhoto photo) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'addPhoto'");
-    // }
+    @Override
+    public boolean deleteAll() {
+        boolean hadPhotos = !this.photos.isEmpty();
+        while (!this.photos.isEmpty()) {
+            clean();
+        }
+        return hadPhotos;
+    }
 
-    // @Override
-    // public void removePhoto(IPhoto photo) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'removePhoto'");
-    // }
-    
 }
