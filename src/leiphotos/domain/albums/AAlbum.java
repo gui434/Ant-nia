@@ -6,18 +6,19 @@ import java.util.List;
 import java.util.Set;
 
 import leiphotos.domain.core.MainLibrary;
+import leiphotos.domain.core.events.PhotoLibraryEvent;
+import leiphotos.domain.core.events.PhotoRemovedLibraryEvent;
 import leiphotos.domain.facade.IPhoto;
 
 abstract class AAlbum implements IAlbum {
 
     private String name;
-    private MainLibrary lib;
     private List<IPhoto> photos;
 
     public AAlbum(String name, MainLibrary lib) {
-       this.name = name;
-       this.lib = lib;
-       this.photos = new ArrayList<>(); 
+        this.name = name;
+        this.photos = new ArrayList<>();
+        lib.registerListener(this); 
     }
 
     @Override
@@ -43,5 +44,12 @@ abstract class AAlbum implements IAlbum {
     @Override
     public boolean removePhotos(Set<IPhoto> photos) {
         return this.photos.removeAll(photos);
+    }
+
+    @Override
+    public void processEvent(PhotoLibraryEvent e) {
+        if(e instanceof PhotoRemovedLibraryEvent) {
+            removePhotos(Set.of(e.getPhoto()));
+        }
     }
 }
