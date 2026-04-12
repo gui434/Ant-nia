@@ -6,7 +6,7 @@ import java.util.Set;
 import leiphotos.domain.facade.IPhoto;
 
 
-public class AlbumsCatalog implements IALbumsCatalog {
+public class AlbumsCatalog implements IAlbumsCatalog {
     
 
     @Override

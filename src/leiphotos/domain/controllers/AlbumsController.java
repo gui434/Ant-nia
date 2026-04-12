@@ -5,12 +5,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import leiphotos.domain.albums.IALbumsCatalog;
+import leiphotos.domain.albums.IAlbumsCatalog;
 import leiphotos.domain.facade.IAlbumsController;
 import leiphotos.domain.facade.IPhoto;
 
 public class AlbumsController implements IAlbumsController {
-    private IALbumsCatalog catalog;
+    private IAlbumsCatalog catalog;
 
     @Override
     public boolean createAlbum(String name) {
