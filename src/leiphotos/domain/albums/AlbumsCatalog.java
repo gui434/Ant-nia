@@ -1,48 +1,88 @@
 package leiphotos.domain.albums;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import leiphotos.domain.core.MainLibrary;
 import leiphotos.domain.facade.IPhoto;
 
 
 public class AlbumsCatalog implements IAlbumsCatalog {
-    
+    private MainLibrary lib;
+    private HashMap<String, Album> hashMap;
+
+
+    public AlbumsCatalog(MainLibrary lib) {
+        this.lib = lib;
+        this.hashMap = new HashMap<>();
+    }
 
     @Override
     public boolean createAlbum(String name) {
-        throw new UnsupportedOperationException("Unimplemented method 'createAlbum'");
+        if(!containsAlbum(name)){
+            Album newAlbum = new Album(name, lib);
+            hashMap.put(name, newAlbum);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean deleteAlbum(String name) {
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAlbum'");
+        if(containsAlbum(name)){
+            hashMap.remove(name);
+            return true;
+        }
+        return false;
+
     }
 
     @Override
     public boolean containsAlbum(String name) {
-        throw new UnsupportedOperationException("Unimplemented method 'containsAlbum'");
+        return hashMap.containsKey(name);
     }
 
     @Override
     public boolean addPhotos(String albumName, Set<IPhoto> selectedPhotos) {
-        throw new UnsupportedOperationException("Unimplemented method 'addPhotos'");
+        if(containsAlbum(albumName)){
+            for(IPhoto photo: selectedPhotos){
+               lib.addPhoto(photo);
+            }
+            return true;
+            }
+        return false;
+       
     }
 
     @Override
     public boolean removePhotos(String albumName, Set<IPhoto> selectedPhotos) {
-        throw new UnsupportedOperationException("Unimplemented method 'removePhotos'");
+        if(containsAlbum(albumName)){
+            for(IPhoto photo: selectedPhotos){
+               lib.deletePhoto(photo);
+            }
+            return true;
+            }
+        return false;
     }
 
     @Override
     public List<IPhoto> getPhotos(String albumName) {
-        throw new UnsupportedOperationException("Unimplemented method 'getPhotos'");
+        if(containsAlbum(albumName)){
+            return hashMap.get(albumName).getPhotos();
+        }
+        return null;
+        
     }
 
     @Override
     public Set<String> getAlbumsNames() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAlbumsNames'");
+        return hashMap.keySet();
     }
+
+    
+ 
+    
 
   
 }
