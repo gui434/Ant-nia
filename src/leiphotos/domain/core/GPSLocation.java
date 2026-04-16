@@ -1,24 +1,12 @@
 package leiphotos.domain.core;
 
 import leiphotos.domain.facade.GPSCoordinates;
+import leiphotos.utils.RegExpMatchable;
 
-class GPSLocation implements GPSCoordinates{
-    private double latitude;
-    private double longitude;
-
-    public GPSLocation(double latitude, double longitude){
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
+public record GPSLocation(double latitude, double longitude) implements GPSCoordinates, RegExpMatchable {
     @Override
-    public double latitude() {
-        return this.latitude;
-    }
-    @Override
-    public double longitude() {
-        return this.longitude;
-    }
+    public boolean matches(String regex) {
+        return Double.toString(this.latitude).matches(regex) || Double.toString(this.longitude).matches(regex);
+    } 
 
-    
 }

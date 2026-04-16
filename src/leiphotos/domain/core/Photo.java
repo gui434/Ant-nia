@@ -13,12 +13,14 @@ class Photo implements IPhoto,RegExpMatchable {
     private LocalDateTime addedDate;
     private String title;
     private File file;
+    private boolean isFavourite;
 
     Photo(String title, LocalDateTime dateAddedToLib, PhotoMetadata metadata, File pathToFile){
         this.title = title;
         this.addedDate = dateAddedToLib;
         this.file = pathToFile;
         this.photoMetadata = metadata;
+        this.isFavourite = false;
     }
 
     @Override
@@ -39,20 +41,17 @@ class Photo implements IPhoto,RegExpMatchable {
 
     @Override
     public boolean isFavourite() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isFavourite'");
+        return this.isFavourite;
     }
 
     @Override
     public void toggleFavourite() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toggleFavourite'");
+        this.isFavourite = !this.isFavourite;
     }
 
     @Override
     public Optional<? extends GPSCoordinates> getPlace() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPlace'");
+        return this.photoMetadata.gpsLocation();
     }
 
     @Override
@@ -70,5 +69,4 @@ class Photo implements IPhoto,RegExpMatchable {
         return title.matches(regexp) || photoMetadata.matches(regexp);
     }
 
-    
 }

@@ -1,35 +1,13 @@
 package leiphotos.domain.core;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import leiphotos.utils.RegExpMatchable;
 
-public class PhotoMetadata implements RegExpMatchable{
-
-    private GPSLocation location;
-    private String camera;
-    private String manufacturer;
-    private String aperture;
-    private LocalDateTime date;
-
-    PhotoMetadata(String camera, String manufacturer, LocalDateTime date, String aperture,
-            double[] gpsLocation) {
-                this.camera = camera;
-                this.manufacturer = manufacturer;
-                this.aperture = aperture;
-                this.date = date;
-
-                if(location != null){
-                    this.location = new GPSLocation(gpsLocation[0],gpsLocation[1]);
-                }
-    }
-
+public record PhotoMetadata(Optional<GPSLocation> gpsLocation, LocalDateTime date, String camera, String manufacturer) implements RegExpMatchable {
     @Override
-    public boolean matches(String regexp) {
-        return this.manufacturer.matches(regexp) || this.camera.matches(regexp) || this.aperture.matches(regexp);
-    }
-    
-    public LocalDateTime date() {
-        return this.date;
+    public boolean matches(String regex) {
+        return this.camera.matches(regex) || this.manufacturer.matches(regex) || this.gpsLocation.map(loc -> loc.matches(regex)).orElse(false);
     }
 }
