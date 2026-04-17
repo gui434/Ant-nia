@@ -14,7 +14,8 @@ public class AlbumsController implements IAlbumsController {
     private String albumNameSelected;
     private Predicate<IPhoto> criteria;
 
-    public AlbumsController(){
+    public AlbumsController(IAlbumsCatalog albumsCatalog) {
+        this.catalog = albumsCatalog;
         
     }
 

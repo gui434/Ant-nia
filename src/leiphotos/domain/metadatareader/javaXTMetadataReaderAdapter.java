@@ -1,16 +1,22 @@
 package leiphotos.domain.metadatareader;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import leiphotos.services.JavaXTJpegMetadataReader;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class javaXTMetadataReaderAdapter implements JpegMetadataReader {
     private JavaXTJpegMetadataReader reader;
 
-    javaXTMetadataReaderAdapter(File file){
-        this.reader = new JavaXTJpegMetadataReader(file);
+    javaXTMetadataReaderAdapter(File file) throws FileNotFoundException {
+         try {
+            this.reader = new JavaXTJpegMetadataReader(file);
+        } catch (IllegalArgumentException e) {
+            throw new FileNotFoundException(file.getName()); // converte a exceção
+        }
     }
 
     @Override
@@ -25,7 +31,12 @@ public class javaXTMetadataReaderAdapter implements JpegMetadataReader {
 
     @Override
     public LocalDateTime getDate() {
-        return LocalDateTime.parse(reader.getDate());
+        String date = reader.getDate();
+        if (date == null) {
+            return LocalDateTime.of(1970, 1, 1, 0, 0); // data por omissão
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss");
+        return LocalDateTime.parse(date, formatter);
     }
 
     @Override

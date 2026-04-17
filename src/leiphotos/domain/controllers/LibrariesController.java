@@ -15,9 +15,11 @@ public class LibrariesController implements ILibrariesController {
     private TrashLibrary trash;
     private MainLibrary main;
 
-    public LibrariesController() {
-        this.main = new MainLibrary();
+    public LibrariesController(MainLibrary mainLib, TrashLibrary trashLib) {
+        this.main = mainLib;
+        this.trash = trashLib;
     }
+
 
     @Override
     public Optional<IPhoto> importPhoto(String title, String pathToPhotoFile) {
@@ -25,7 +27,7 @@ public class LibrariesController implements ILibrariesController {
         try {
             photo = PhotoFactory.INSTANCE.createPhoto(title, pathToPhotoFile);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File " + pathToPhotoFile + " not found or could not be open");
             return Optional.empty();
         }
         main.addPhoto(photo);
