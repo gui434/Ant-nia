@@ -11,58 +11,66 @@ import leiphotos.domain.facade.IPhoto;
 
 public class AlbumsController implements IAlbumsController {
     private IAlbumsCatalog catalog;
+    private String albumNameSelected;
+    private Predicate<IPhoto> criteria;
+
+    public AlbumsController(){
+        
+    }
 
     @Override
     public boolean createAlbum(String name) {
-        return false;
+        return catalog.createAlbum(name);
     }
 
     @Override
     public void removeAlbum() {
-        // TODO Auto-generated method stub
+        if(albumNameSelected != null)
+            catalog.deleteAlbum(albumNameSelected);
         
     }
 
     @Override
     public void selectAlbum(String name) {
-        // TODO Auto-generated method stub
-        
+        albumNameSelected = name;
     }
 
     @Override
     public void addPhotos(Set<IPhoto> selectedPhotos) {
-        // TODO Auto-generated method stub
+        if(albumNameSelected != null)
+            catalog.addPhotos(albumNameSelected, selectedPhotos);
         
     }
 
     @Override
     public void removePhotos(Set<IPhoto> selectedPhotos) {
-        // TODO Auto-generated method stub
-        
+        if(albumNameSelected != null)
+            catalog.removePhotos(albumNameSelected, selectedPhotos);      
     }
 
     @Override
     public List<IPhoto> getPhotos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPhotos'");
+        return catalog.getPhotos(albumNameSelected);
     }
 
     @Override
     public Optional<String> getSelectedAlbum() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSelectedAlbum'");
+        return Optional.ofNullable(albumNameSelected);
     }
 
     @Override
     public boolean createSmartAlbum(String name, Predicate<IPhoto> criteria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createSmartAlbum'");
+        this.criteria = criteria;
+        if(!catalog.containsAlbum(name)){
+            createAlbum(name);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Set<String> getAlbumNames() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAlbumNames'");
+        return catalog.getAlbumsNames();
     }
 
 }
