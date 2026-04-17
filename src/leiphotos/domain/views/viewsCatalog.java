@@ -8,10 +8,10 @@ import leiphotos.domain.core.MainLibrary;
 import leiphotos.domain.core.TrashLibrary;
 import leiphotos.domain.facade.ViewsType;
 
-public class viewsCatalog implements IViewsCatalog{
+public class ViewsCatalog implements IViewsCatalog{
     Map <ViewsType, ILibraryView> views = new HashMap<>();
 
-    public viewsCatalog(MainLibrary main, TrashLibrary trash) {
+    public ViewsCatalog(MainLibrary main, TrashLibrary trash) {
         this.views.put(ViewsType.ALL_MAIN, new MainLibraryView(main, photo -> true));
         this.views.put(ViewsType.ALL_TRASH, new TrashLibraryView(trash));
         this.views.put(ViewsType.FAVOURITES, new MainLibraryView(main, photo -> photo.isFavourite()));
