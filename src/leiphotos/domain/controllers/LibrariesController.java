@@ -20,14 +20,13 @@ public class LibrariesController implements ILibrariesController {
         this.trash = trashLib;
     }
 
-
     @Override
     public Optional<IPhoto> importPhoto(String title, String pathToPhotoFile) {
         IPhoto photo;
         try {
             photo = PhotoFactory.INSTANCE.createPhoto(title, pathToPhotoFile);
         } catch (FileNotFoundException e) {
-            System.out.println("File " + pathToPhotoFile + " not found or could not be open");
+            e.printStackTrace();
             return Optional.empty();
         }
         main.addPhoto(photo);
@@ -46,17 +45,21 @@ public class LibrariesController implements ILibrariesController {
 
     @Override
     public void emptyTrash() {
-        // TODO Auto-generated method stub
+        trash.deleteAll();
     }
 
     @Override
     public void toggleFavourite(Set<IPhoto> selectedPhotos) {
-        // TODO Auto-generated method stub
+        for (IPhoto photo : selectedPhotos) {
+            if (main.getPhotos().contains(photo)) {
+                photo.toggleFavourite();
+            }
+        }
     }
 
+    @Override
     public Iterable<IPhoto> getMatches(String regExp) {
-        // TODO Auto-generated method stub
-        return null;
+        return main.getMatches(regExp);
     }
 
 
