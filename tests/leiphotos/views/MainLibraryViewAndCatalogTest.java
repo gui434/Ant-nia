@@ -43,12 +43,12 @@ class MainLibraryViewAndCatalogTest {
         trashLib = new RecentlyDeletedLibrary();
         catalog  = new ViewsCatalog(mainLib, trashLib);
 
-        small  = new MockPhoto("small.jpg", LocalDateTime.now(), LocalDateTime.now(), 100L, new java.io.File("small.jpg"));
-        medium = new MockPhoto("medium.jpg", LocalDateTime.now(), LocalDateTime.now(), 500L, new java.io.File("medium.jpg"));
-        large  = new MockPhoto("large.jpg", LocalDateTime.now(), LocalDateTime.now(), 900L, new java.io.File("large.jpg"));
+        small  = new MockPhoto("small", LocalDateTime.now(), LocalDateTime.now(), 100L, new java.io.File("small.jpg"));
+        medium = new MockPhoto("medium", LocalDateTime.now(), LocalDateTime.now(), 500L, new java.io.File("medium.jpg"));
+        large  = new MockPhoto("large", LocalDateTime.now(), LocalDateTime.now(), 900L, new java.io.File("large.jpg"));
 
-        recent = new MockPhoto("recent.jpg", LocalDateTime.now(), LocalDateTime.now(), 100L, new java.io.File("recent.jpg"));
-        old    = new MockPhoto("old.jpg", LocalDateTime.now().minusYears(5), LocalDateTime.now().minusYears(5), 100L, new java.io.File("old.jpg"));
+        recent = new MockPhoto("recent", LocalDateTime.now(), LocalDateTime.now(), 100L, new java.io.File("recent.jpg"));
+        old    = new MockPhoto("old", LocalDateTime.now().minusYears(5), LocalDateTime.now().minusYears(5), 100L, new java.io.File("old.jpg"));
     }
 
     // ==================================================================
@@ -100,9 +100,9 @@ class MainLibraryViewAndCatalogTest {
         view.setComparator(Comparator.comparing(IPhoto::title));
 
         List<IPhoto> photos = view.getPhotos();
-        assertEquals("LargePhoto",  photos.get(0).title());
-        assertEquals("MediumPhoto", photos.get(1).title());
-        assertEquals("SmallPhoto",  photos.get(2).title());
+        assertEquals("large",  photos.get(0).title());
+        assertEquals("medium", photos.get(1).title());
+        assertEquals("small",  photos.get(2).title());
     }
 
     // ------------------------------------------------------------------ cache invalidation
@@ -144,7 +144,7 @@ class MainLibraryViewAndCatalogTest {
     void getMatches_matchingRegex_returnsCorrectPhotos() {
         mainLib.addPhoto(small);
         mainLib.addPhoto(medium);
-        List<IPhoto> result = catalog.getView(ViewsType.ALL_MAIN).getMatches(".*Small.*");
+        List<IPhoto> result = catalog.getView(ViewsType.ALL_MAIN).getMatches(".*small.*");
         assertTrue(result.contains(small));
         assertFalse(result.contains(medium));
     }
