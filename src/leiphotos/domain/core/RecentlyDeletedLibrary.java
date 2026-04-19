@@ -92,5 +92,13 @@ public class RecentlyDeletedLibrary extends ATrashLibrary{
 
         return secondsInTrash >= MAX_SECONDS_IN_TRASH && secondsSinceLastCheck >= MIN_SECONDS_BETWEEN_CLEANING;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("***** TRASH PHOTO LIBRARY: ").append(photos.size()).append(" photos ****\n");
+        photos.forEach(p -> sb.append(p).append("\n"));
+        return sb.toString();
+    }
     
 }

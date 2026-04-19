@@ -1,6 +1,8 @@
 package leiphotos.domain.core;
 import java.io.File;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Optional;
 
 import leiphotos.domain.facade.GPSCoordinates;
@@ -66,7 +68,18 @@ class Photo implements IPhoto,RegExpMatchable {
 
     @Override
     public boolean matches(String regexp) {
-        return title.matches(regexp) || photoMetadata.matches(regexp);
+        return title.matches(regexp) || photoMetadata.matches(regexp) || file.getName().matches(regexp);
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return " File:" + file + "\n" +
+           "   Title:" + title + 
+           "  Added:" + addedDate.format(formatter) + 
+           "  Size:" + String.format(Locale.ENGLISH, "%,d", size()) + "\n" +
+           "   " + photoMetadata +
+           (isFavourite ? "  FAV" : "");
     }
 
 }

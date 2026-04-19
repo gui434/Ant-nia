@@ -1,11 +1,12 @@
 package leiphotos.domain.core;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Comparator;
 
 import leiphotos.domain.facade.IPhoto;
 import leiphotos.utils.AbsSubject;
 import leiphotos.domain.core.events.PhotoAddedLibraryEvent;
+import leiphotos.domain.core.events.PhotoChangedLibraryEvent;
 import leiphotos.domain.core.events.PhotoLibraryEvent;
 import leiphotos.domain.core.events.PhotoRemovedLibraryEvent;
 
@@ -49,7 +50,7 @@ public class MainLibrary extends AbsSubject<PhotoLibraryEvent> implements Librar
 
     @Override
     public Collection<IPhoto> getPhotos() {
-        return Collections.unmodifiableCollection(this.photos);
+        return this.photos;
     }
 
     @Override
@@ -61,6 +62,20 @@ public class MainLibrary extends AbsSubject<PhotoLibraryEvent> implements Librar
             }
         }
         return matches;
+    }
+
+    public void photoChanged(IPhoto photo) {
+        if (this.photos.contains(photo)) {
+            this.emitEvent(new PhotoChangedLibraryEvent(photo, this));
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("***** MAIN PHOTO LIBRARY: ").append(photos.size()).append(" photos *****\n");
+        photos.stream().sorted(Comparator.comparing(IPhoto::title)).forEach(p -> sb.append(p).append("\n"));
+        return sb.toString();
     }
 
 }

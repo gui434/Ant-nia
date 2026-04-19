@@ -1,6 +1,5 @@
 package leiphotos.domain.views;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -14,7 +13,6 @@ public class MainLibraryView extends ALibraryView implements Listener<PhotoLibra
 	
 	public MainLibraryView(MainLibrary lib, Predicate<IPhoto> belongsToView) {
 		super(lib, belongsToView);
-		this.cache = new ArrayList<>();
 		this.cache = null;
 		lib.registerListener(this);
 	}

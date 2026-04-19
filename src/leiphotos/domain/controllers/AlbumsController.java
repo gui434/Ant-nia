@@ -12,7 +12,6 @@ import leiphotos.domain.facade.IPhoto;
 public class AlbumsController implements IAlbumsController {
     private IAlbumsCatalog catalog;
     private String albumNameSelected;
-    private Predicate<IPhoto> criteria;
 
     public AlbumsController(IAlbumsCatalog albumsCatalog) {
         this.catalog = albumsCatalog;
@@ -61,17 +60,25 @@ public class AlbumsController implements IAlbumsController {
 
     @Override
     public boolean createSmartAlbum(String name, Predicate<IPhoto> criteria) {
-        this.criteria = criteria;
-        if(!catalog.containsAlbum(name)){
-            createAlbum(name);
-            return true;
-        }
         return false;
     }
 
     @Override
     public Set<String> getAlbumNames() {
         return catalog.getAlbumsNames();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("***** ALBUMS *****\n");
+        for (String albumName : catalog.getAlbumsNames()) {
+            List<IPhoto> photos = catalog.getPhotos(albumName);
+            sb.append("\n***** Album ").append(albumName).append(": ")
+            .append(photos.size()).append(" photos  *****\n");
+            photos.forEach(p -> sb.append(p.file()).append("\n"));
+        }
+        return sb.toString();
     }
 
 }

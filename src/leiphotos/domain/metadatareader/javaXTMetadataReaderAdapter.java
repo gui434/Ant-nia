@@ -15,7 +15,7 @@ public class javaXTMetadataReaderAdapter implements JpegMetadataReader {
          try {
             this.reader = new JavaXTJpegMetadataReader(file);
         } catch (IllegalArgumentException e) {
-            throw new FileNotFoundException(file.getName()); // converte a exceção
+            throw new FileNotFoundException(file.getName());
         }
     }
 
@@ -33,7 +33,7 @@ public class javaXTMetadataReaderAdapter implements JpegMetadataReader {
     public LocalDateTime getDate() {
         String date = reader.getDate();
         if (date == null) {
-            return LocalDateTime.of(1970, 1, 1, 0, 0); // data por omissão
+            return LocalDateTime.of(1970, 1, 1, 0, 0);
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm:ss");
         return LocalDateTime.parse(date, formatter);

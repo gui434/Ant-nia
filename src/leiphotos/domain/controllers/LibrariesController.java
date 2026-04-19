@@ -26,7 +26,6 @@ public class LibrariesController implements ILibrariesController {
         try {
             photo = PhotoFactory.INSTANCE.createPhoto(title, pathToPhotoFile);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             return Optional.empty();
         }
         main.addPhoto(photo);
@@ -40,12 +39,13 @@ public class LibrariesController implements ILibrariesController {
                 trash.addPhoto(photo);
             }
         }
-        
+        System.out.println("Selected photos have been moved to the trash.");
     }
 
     @Override
     public void emptyTrash() {
         trash.deleteAll();
+        System.out.println("Trash has been emptied.");
     }
 
     @Override
@@ -53,6 +53,7 @@ public class LibrariesController implements ILibrariesController {
         for (IPhoto photo : selectedPhotos) {
             if (main.getPhotos().contains(photo)) {
                 photo.toggleFavourite();
+                main.photoChanged(photo);
             }
         }
     }
@@ -62,5 +63,10 @@ public class LibrariesController implements ILibrariesController {
         return main.getMatches(regExp);
     }
 
+
+    @Override
+    public String toString() {
+        return main.toString() + "\n" + trash.toString();
+    }
 
 }

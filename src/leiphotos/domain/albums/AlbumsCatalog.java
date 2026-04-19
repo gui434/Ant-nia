@@ -10,7 +10,7 @@ import leiphotos.domain.facade.IPhoto;
 
 public class AlbumsCatalog implements IAlbumsCatalog {
     private MainLibrary lib;
-    private HashMap<String, Album> hashMap;
+    private HashMap<String, IAlbum> hashMap;
 
 
     public AlbumsCatalog(MainLibrary lib) {
@@ -21,7 +21,7 @@ public class AlbumsCatalog implements IAlbumsCatalog {
     @Override
     public boolean createAlbum(String name) {
         if(!containsAlbum(name)){
-            Album newAlbum = new Album(name, lib);
+            IAlbum newAlbum = new Album(name, lib);
             hashMap.put(name, newAlbum);
             return true;
         }
@@ -46,9 +46,8 @@ public class AlbumsCatalog implements IAlbumsCatalog {
     @Override
     public boolean addPhotos(String albumName, Set<IPhoto> selectedPhotos) {
         if(containsAlbum(albumName)){
-            for(IPhoto photo: selectedPhotos){
-               lib.addPhoto(photo);
-            }
+            IAlbum album = hashMap.get(albumName);
+            album.addPhotos(selectedPhotos);
             return true;
             }
         return false;
@@ -58,10 +57,8 @@ public class AlbumsCatalog implements IAlbumsCatalog {
     @Override
     public boolean removePhotos(String albumName, Set<IPhoto> selectedPhotos) {
         if(containsAlbum(albumName)){
-            for(IPhoto photo: selectedPhotos){
-               lib.deletePhoto(photo);
-            }
-            return true;
+            IAlbum album = hashMap.get(albumName);
+            return album.removePhotos(selectedPhotos);
             }
         return false;
     }
@@ -78,11 +75,7 @@ public class AlbumsCatalog implements IAlbumsCatalog {
     @Override
     public Set<String> getAlbumsNames() {
         return hashMap.keySet();
-    }
-
-    
- 
-    
+    }    
 
   
 }

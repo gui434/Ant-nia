@@ -14,3 +14,4 @@ public interface ILibraryView {
 
     List<IPhoto> getMatches(String regexp);
 }
+  

@@ -5,7 +5,7 @@ import leiphotos.domain.facade.IPhoto;
 
 public class PhotoChangedLibraryEvent extends PhotoLibraryEvent{
 
-    PhotoChangedLibraryEvent(IPhoto photo, Library lib) {
+    public PhotoChangedLibraryEvent(IPhoto photo, Library lib) {
         super(photo, lib);
     }
     

@@ -11,8 +11,7 @@ import java.io.File;
 public enum PhotoFactory {
     INSTANCE;
 
-    public Photo createPhoto(String title, String pathToPhotoFile) throws 
-    java.io.FileNotFoundException {
+    public Photo createPhoto(String title, String pathToPhotoFile) throws java.io.FileNotFoundException {
         try{
             File file = new File(pathToPhotoFile);
             JpegMetadataReader leitor = JpegMetadataReaderFactory.INSTANCE.createMetadataReader(file);
@@ -28,7 +27,8 @@ public enum PhotoFactory {
             );
             return new Photo(title, LocalDateTime.now(), metadata, file);
         } catch (java.io.FileNotFoundException e){
-            throw new java.io.FileNotFoundException("File not found: " + pathToPhotoFile);
+            System.out.println("File " + pathToPhotoFile + " not found or could not be opened");
+            throw e;
         } catch (JpegMetadataException e){
             throw new RuntimeException("Error reading metadata from file: " + pathToPhotoFile, e);
         }
