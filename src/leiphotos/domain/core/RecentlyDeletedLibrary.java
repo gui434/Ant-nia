@@ -22,7 +22,10 @@ public class RecentlyDeletedLibrary extends ATrashLibrary{
    private final int MAX_SECONDS_IN_TRASH = 15;
    private final int MIN_SECONDS_BETWEEN_CLEANING = 5;
 
-    
+    /**
+     * Constructor for RecentlyDeletedLibrary. Initializes the last check time to the current time.
+     * @returns a new instance of RecentlyDeletedLibrary
+     */
     public RecentlyDeletedLibrary() {
         this.lastCheckTime = LocalDateTime.now();
     }

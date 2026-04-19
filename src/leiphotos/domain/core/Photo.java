@@ -22,6 +22,14 @@ public class Photo implements IPhoto,RegExpMatchable {
     private File file;
     private boolean isFavourite;
 
+    /**
+     * Constructor for Photo.
+     * @param title the title of the photo
+     * @param dateAddedToLib the date and time when the photo was added to the library
+     * @param metadata the metadata of the photo, including GPS location, captured date, camera, and manufacturer
+     * @param pathToFile the file path to the photo
+     * @returns a new instance of Photo with the provided title, metadata, and file path
+     */
     public Photo(String title, LocalDateTime dateAddedToLib, PhotoMetadata metadata, File pathToFile){
         this.title = title;
         this.addedDate = dateAddedToLib;

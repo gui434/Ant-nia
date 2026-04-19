@@ -19,6 +19,10 @@ import leiphotos.domain.core.events.PhotoRemovedLibraryEvent;
 public class MainLibrary extends AbsSubject<PhotoLibraryEvent> implements Library {
     private Collection<IPhoto> photos;
 
+    /**
+     * Constructor for MainLibrary. Initializes the photos collection.
+     * @returns a new instance of MainLibrary
+     */
     public MainLibrary() {
         this.photos = new java.util.ArrayList<>();
     }

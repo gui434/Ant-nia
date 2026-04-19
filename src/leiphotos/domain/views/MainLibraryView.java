@@ -11,6 +11,12 @@ import leiphotos.domain.core.events.PhotoLibraryEvent;
 public class MainLibraryView extends ALibraryView implements Listener<PhotoLibraryEvent> {
 	private List<IPhoto> cache;
 	
+	/**
+	 * Constructor for MainLibraryView. Initializes the view with the given library and a filter that determines which photos belong to the view.
+	 * @param lib
+	 * @param belongsToView
+	 * @returns a new instance of MainLibraryView that displays photos from the main library that satisfy the given filter condition
+	 */
 	public MainLibraryView(MainLibrary lib, Predicate<IPhoto> belongsToView) {
 		super(lib, belongsToView);
 		this.cache = null;

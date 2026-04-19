@@ -17,6 +17,13 @@ import java.io.File;
 public enum PhotoFactory {
     INSTANCE;
 
+    /**
+     * Creates a Photo instance with the given title and file path. It reads the metadata from the photo file
+     * @param title
+     * @param pathToPhotoFile
+     * @returns a new Photo instance with the provided title and metadata extracted from the photo file
+     * @throws java.io.FileNotFoundException
+     */
     public Photo createPhoto(String title, String pathToPhotoFile) throws java.io.FileNotFoundException {
         try{
             File file = new File(pathToPhotoFile);

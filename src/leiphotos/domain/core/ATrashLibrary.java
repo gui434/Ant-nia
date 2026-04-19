@@ -15,8 +15,16 @@ public abstract class ATrashLibrary implements TrashLibrary {
 
     protected Collection<IPhoto> photos = new ArrayList<>();
 
+    /**
+     * Cleans the trash library by removing photos that have been in the trash for too long. The specific cleaning logic is defined in the concrete implementation.
+     * @ensures that photos that have been in the trash for too long are removed from the library
+     */
      protected abstract void clean();
 
+     /**
+      * Determines if it's time to clean the trash library based on the time photos have been in the trash. The specific logic for determining cleaning time is defined in the concrete implementation.
+      * @returns true if it's time to clean the trash library, false otherwise
+      */
      protected abstract boolean cleaningTime();
 
     @Override
