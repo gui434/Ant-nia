@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Set;
 
+import leiphotos.core.MockPhoto;
 import leiphotos.domain.albums.AlbumsCatalog;
 import leiphotos.domain.core.MainLibrary;
-import leiphotos.domain.core.MockPhoto;
 import leiphotos.domain.facade.IPhoto;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,9 +35,9 @@ class AlbumsCatalogTest {
         lib     = new MainLibrary();
         catalog = new AlbumsCatalog(lib);
 
-        p1 = new MockPhoto("Photo1", null, null, false, null, 0, false);
-        p2 = new MockPhoto("Photo2", null, null, false, null, 0, false);
-        p3 = new MockPhoto("Photo3", null, null, false, null, 0, false);
+        p1 = new MockPhoto("Photo1");
+        p2 = new MockPhoto("Photo2");
+        p3 = new MockPhoto("Photo3");
 
         lib.addPhoto(p1);
         lib.addPhoto(p2);

@@ -1,4 +1,4 @@
-package leiphotos.domain.core;
+package leiphotos.core;
 
 import java.io.File;
 /* 

@@ -1,4 +1,4 @@
-package leiphotos.domain.controllers;
+package leiphotos.controllers;
 
 import org.junit.jupiter.api.Test;
 

@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
+import leiphotos.core.MockPhoto;
 import leiphotos.domain.core.MainLibrary;
-import leiphotos.domain.core.MockPhoto;
 import leiphotos.domain.core.RecentlyDeletedLibrary;
 import leiphotos.domain.core.TrashLibrary;
 import leiphotos.domain.facade.IPhoto;
@@ -43,12 +43,12 @@ class MainLibraryViewAndCatalogTest {
         trashLib = new RecentlyDeletedLibrary();
         catalog  = new ViewsCatalog(mainLib, trashLib);
 
-        small  = new MockPhoto(new java.io.File("small.jpg"));
-        medium = new MockPhoto(new java.io.File("medium.jpg"));
-        large  = new MockPhoto(new java.io.File("large.jpg"));
+        small  = new MockPhoto("small.jpg", LocalDateTime.now(), LocalDateTime.now(), 100L, new java.io.File("small.jpg"));
+        medium = new MockPhoto("medium.jpg", LocalDateTime.now(), LocalDateTime.now(), 500L, new java.io.File("medium.jpg"));
+        large  = new MockPhoto("large.jpg", LocalDateTime.now(), LocalDateTime.now(), 900L, new java.io.File("large.jpg"));
 
-        recent = new MockPhoto(new java.io.File("recent.jpg"));
-        old    = new MockPhoto(new java.io.File("old.jpg"));
+        recent = new MockPhoto("recent.jpg", LocalDateTime.now(), LocalDateTime.now(), 100L, new java.io.File("recent.jpg"));
+        old    = new MockPhoto("old.jpg", LocalDateTime.now().minusYears(5), LocalDateTime.now().minusYears(5), 100L, new java.io.File("old.jpg"));
     }
 
     // ==================================================================

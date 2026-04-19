@@ -13,7 +13,6 @@ import leiphotos.domain.controllers.AlbumsController;
 import leiphotos.domain.controllers.LibrariesController;
 import leiphotos.domain.controllers.ViewsController;
 import leiphotos.domain.core.MainLibrary;
-import leiphotos.domain.core.MockPhoto;
 import leiphotos.domain.core.RecentlyDeletedLibrary;
 import leiphotos.domain.core.TrashLibrary;
 import leiphotos.domain.facade.IPhoto;
@@ -56,9 +55,9 @@ class ControllersTest {
         viewCtrl = new ViewsController(viewsCatalog);
         albCtrl  = new AlbumsController(albumsCatalog);
 
-        p1 = new MockPhoto("Alpha", null, null, false, null, 0, false);
-        p2 = new MockPhoto("Beta", null, null, false, null, 0, false);
-        p3 = new MockPhoto("Gamma", null, null, false, null, 0, false);
+        p1 = new MockPhoto("Alpha");
+        p2 = new MockPhoto("Beta");
+        p3 = new MockPhoto("Gamma");
     }
 
     // ==================================================================
