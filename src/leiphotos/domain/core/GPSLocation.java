@@ -13,8 +13,8 @@ public record GPSLocation(double latitude, double longitude) implements GPSCoord
 
     @Override
     public String toString() {
-        return "{Lat:" + String.format("%.2f", this.latitude) + 
+        return "{Lat:" + String.format(Locale.ENGLISH, "%.2f", this.latitude) + 
                " Long:" + String.format(Locale.ENGLISH, "%.2f", this.longitude) + " DESC:}";
-}
+    }
 
 }
