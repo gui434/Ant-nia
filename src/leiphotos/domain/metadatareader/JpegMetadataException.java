@@ -1,7 +1,9 @@
 package leiphotos.domain.metadatareader;
 
 /**
- *
+ * Exception class for errors related to reading JPEG metadata.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
  */
 public class JpegMetadataException extends Exception {
 

@@ -8,6 +8,12 @@ import leiphotos.domain.metadatareader.JpegMetadataReader;
 import leiphotos.domain.metadatareader.JpegMetadataReaderFactory;
 import java.io.File;
 
+/**
+ * PhotoFactory is responsible for creating Photo instances.
+ * It provides a method to create a photo with the given title and file path.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public enum PhotoFactory {
     INSTANCE;
 

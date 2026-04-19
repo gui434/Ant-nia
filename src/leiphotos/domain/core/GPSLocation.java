@@ -5,6 +5,10 @@ import java.util.Locale;
 import leiphotos.domain.facade.GPSCoordinates;
 import leiphotos.utils.RegExpMatchable;
 
+/**
+ * A record representing a GPS location with latitude and longitude.
+ * Implements GPSCoordinates and RegExpMatchable interfaces.
+ */
 public record GPSLocation(double latitude, double longitude) implements GPSCoordinates, RegExpMatchable {
     @Override
     public boolean matches(String regex) {

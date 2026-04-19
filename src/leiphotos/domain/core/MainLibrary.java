@@ -10,6 +10,12 @@ import leiphotos.domain.core.events.PhotoChangedLibraryEvent;
 import leiphotos.domain.core.events.PhotoLibraryEvent;
 import leiphotos.domain.core.events.PhotoRemovedLibraryEvent;
 
+/**
+ * MainLibrary is responsible for managing the main photo library.
+ * It provides functionalities to add, delete, and retrieve photos.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class MainLibrary extends AbsSubject<PhotoLibraryEvent> implements Library {
     private Collection<IPhoto> photos;
 

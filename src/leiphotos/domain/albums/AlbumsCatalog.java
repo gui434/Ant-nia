@@ -7,12 +7,19 @@ import java.util.Set;
 import leiphotos.domain.core.MainLibrary;
 import leiphotos.domain.facade.IPhoto;
 
-
+/**
+ * Class representing a catalog of albums in the application.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class AlbumsCatalog implements IAlbumsCatalog {
     private MainLibrary lib;
     private HashMap<String, IAlbum> hashMap;
 
-
+    /**
+     * Constructor for AlbumsCatalog.
+     * @param lib the main library to register albums as listeners for photo events
+     */
     public AlbumsCatalog(MainLibrary lib) {
         this.lib = lib;
         this.hashMap = new HashMap<>();

@@ -9,10 +9,20 @@ import leiphotos.domain.facade.ViewsType;
 import leiphotos.domain.views.ILibraryView;
 import leiphotos.domain.views.IViewsCatalog;
 
+/**
+ * ViewsController is responsible for managing different views of photos based on various criteria.
+ * It interacts with the IViewsCatalog to retrieve and manipulate photo views.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class ViewsController implements IViewsController {
 
     private IViewsCatalog viewsCatalog;
 
+    /**
+     * Constructor for ViewsController.
+     * @param views the views catalog to manage different photo views
+     */
     public ViewsController(IViewsCatalog views) {
         this.viewsCatalog = views;
     }

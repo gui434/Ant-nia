@@ -8,9 +8,20 @@ import leiphotos.domain.core.MainLibrary;
 import leiphotos.domain.core.TrashLibrary;
 import leiphotos.domain.facade.ViewsType;
 
+/**
+ * A catalog of views of the library.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class ViewsCatalog implements IViewsCatalog{
     Map <ViewsType, ILibraryView> views = new HashMap<>();
 
+    /**
+     * Creates a new views catalog with the given main library and trash library.
+     * 
+     * @param main the main library
+     * @param trash the trash library
+     */
     public ViewsCatalog(MainLibrary main, TrashLibrary trash) {
         this.views.put(ViewsType.ALL_MAIN, new MainLibraryView(main, photo -> true));
         this.views.put(ViewsType.ALL_TRASH, new TrashLibraryView(trash));

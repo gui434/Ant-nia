@@ -10,11 +10,23 @@ import leiphotos.domain.core.events.PhotoLibraryEvent;
 import leiphotos.domain.core.events.PhotoRemovedLibraryEvent;
 import leiphotos.domain.facade.IPhoto;
 
+
+/**
+ * Abstract class AAlbum that implements the IAlbum interface. This class provides common functionality for all album types,
+ * such as managing the album's name and photos, and handling photo removal events from the library.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 abstract class AAlbum implements IAlbum {
 
     private String name;
     private List<IPhoto> photos;
 
+    /**
+     * Constructor for AAlbum.
+     * @param name the name of the album
+     * @param lib  the main library to register the album as a listener for photo events
+     */
     public AAlbum(String name, MainLibrary lib) {
         this.name = name;
         this.photos = new ArrayList<>();

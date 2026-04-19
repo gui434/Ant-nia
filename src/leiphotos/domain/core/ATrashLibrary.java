@@ -5,6 +5,12 @@ import java.util.Collection;
 
 import leiphotos.domain.facade.IPhoto;
 
+/**
+ * An abstract implementation of the TrashLibrary interface, providing a base for concrete implementations.
+ * This class manages a collection of photos and defines the structure for cleaning and determining cleaning time.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public abstract class ATrashLibrary implements TrashLibrary {
 
     protected Collection<IPhoto> photos = new ArrayList<>();

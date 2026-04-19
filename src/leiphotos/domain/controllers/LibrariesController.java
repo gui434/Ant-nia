@@ -10,11 +10,22 @@ import leiphotos.domain.core.TrashLibrary;
 import leiphotos.domain.facade.ILibrariesController;
 import leiphotos.domain.facade.IPhoto;
 
+/**
+ * LibrariesController is responsible for managing the main library and the trash library.
+ * It provides functionalities to import photos, delete photos, empty the trash, toggle favourite status, and search for photos.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class LibrariesController implements ILibrariesController {
 
     private TrashLibrary trash;
     private MainLibrary main;
 
+    /**
+     * Constructor for LibrariesController.
+     * @param mainLib the main library to manage photos
+     * @param trashLib the trash library to manage deleted photos
+     */
     public LibrariesController(MainLibrary mainLib, TrashLibrary trashLib) {
         this.main = mainLib;
         this.trash = trashLib;

@@ -10,6 +10,12 @@ import java.util.Map;
 
 import leiphotos.domain.facade.IPhoto;
 
+/**
+ * RecentlyDeletedLibrary is responsible for managing photos that have been recently deleted.
+ * It provides functionalities to add, delete, and retrieve recently deleted photos.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class RecentlyDeletedLibrary extends ATrashLibrary{
    private Map<IPhoto, LocalDateTime> photosHash = new LinkedHashMap<>();
    private LocalDateTime lastCheckTime;

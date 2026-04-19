@@ -8,6 +8,11 @@ import leiphotos.services.JavaXTJpegMetadataReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Adapter class to adapt JavaXTJpegMetadataReader to JpegMetadataReader interface.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class javaXTMetadataReaderAdapter implements JpegMetadataReader {
     private JavaXTJpegMetadataReader reader;
 

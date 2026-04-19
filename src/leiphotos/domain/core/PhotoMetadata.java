@@ -5,7 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import leiphotos.utils.RegExpMatchable;
-
+/**
+ * Immutable record representing metadata of a photo, including GPS location, date taken, camera model, and manufacturer.
+ * Implements RegExpMatchable to allow regex-based searching on camera, manufacturer, and GPS location.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public record PhotoMetadata(Optional<GPSLocation> gpsLocation, LocalDateTime date, String camera, String manufacturer) implements RegExpMatchable {
     @Override
     public boolean matches(String regex) {

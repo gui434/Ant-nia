@@ -9,7 +9,12 @@ import leiphotos.domain.facade.GPSCoordinates;
 import leiphotos.domain.facade.IPhoto;
 import leiphotos.utils.RegExpMatchable;
 
-
+/**
+ * Photo represents a photo in the library.
+ * It contains metadata about the photo and provides methods to access and modify its properties.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class Photo implements IPhoto,RegExpMatchable {
     private PhotoMetadata photoMetadata;
     private LocalDateTime addedDate;

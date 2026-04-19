@@ -9,10 +9,20 @@ import leiphotos.domain.albums.IAlbumsCatalog;
 import leiphotos.domain.facade.IAlbumsController;
 import leiphotos.domain.facade.IPhoto;
 
+/**
+ * AlbumsController is responsible for managing albums and their photos.
+ * It interacts with the IAlbumsCatalog to perform operations on albums.
+ * 
+ * @author Guilherme Santos fc63768 , Tomás Peres fc63721
+ */
 public class AlbumsController implements IAlbumsController {
     private IAlbumsCatalog catalog;
     private String albumNameSelected;
 
+    /**
+     * Constructor for AlbumsController.
+     * @param albumsCatalog the albums catalog to manage albums
+     */
     public AlbumsController(IAlbumsCatalog albumsCatalog) {
         this.catalog = albumsCatalog;
         
