@@ -10,14 +10,14 @@ import leiphotos.domain.facade.IPhoto;
 import leiphotos.utils.RegExpMatchable;
 
 
-class Photo implements IPhoto,RegExpMatchable {
+public class Photo implements IPhoto,RegExpMatchable {
     private PhotoMetadata photoMetadata;
     private LocalDateTime addedDate;
     private String title;
     private File file;
     private boolean isFavourite;
 
-    Photo(String title, LocalDateTime dateAddedToLib, PhotoMetadata metadata, File pathToFile){
+    public Photo(String title, LocalDateTime dateAddedToLib, PhotoMetadata metadata, File pathToFile){
         this.title = title;
         this.addedDate = dateAddedToLib;
         this.file = pathToFile;
